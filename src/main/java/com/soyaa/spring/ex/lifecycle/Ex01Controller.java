@@ -27,7 +27,7 @@ public class Ex01Controller {
 	
 	// map json response
 	// 과일이름 : 가격
-	// int는 이제 안됨 이유는..?
+	// int는 이제 안됨 이유는..? Map 은 class 기반의 객체만 쓸수 있음! (int는 class 기반의 객체가 아님!)
 	@RequestMapping("/2")
 	@ResponseBody
 	public Map<String, Integer> mapResponse() {
