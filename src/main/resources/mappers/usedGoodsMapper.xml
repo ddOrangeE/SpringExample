@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- xml: 데이터 저장(json과 같음), html: 화면 구성 -->
+<!-- json 나타나고 버려졌으나, 프로젝트 같은 거 만들 때 어떠한 설정을 처리할 때 사용됨 -->
+
+<!-- xml 은 태그에 속성을 미리 지정해서 지정된 게 아니면 사용못하게 할 수 있음 : dtd -->
+<!-- dtd 를 사용하면 제대로 작성했는 지 안했는지 알 수가 있다 -->
+
+
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- mapper.xml 파일 DTD 를 위한 코드  -->
+
+<mapper namespace="">
+
+</mapper>
+
+<!-- head같은 지정되지 않은 거 못씀 -->
