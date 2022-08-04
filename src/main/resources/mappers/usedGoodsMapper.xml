@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!-- DAO 를 여기서 구현할 것임 -->
 
 <!-- xml: 데이터 저장(json과 같음), html: 화면 구성 -->
 <!-- json 나타나고 버려졌으나, 프로젝트 같은 거 만들 때 어떠한 설정을 처리할 때 사용됨 -->
@@ -13,8 +14,33 @@
 
 <!-- mapper.xml 파일 DTD 를 위한 코드  -->
 
-<mapper namespace="">
-
+<!-- java가 아니기 때문에 모든 경로를 다 잡아줘야함 -->
+<mapper namespace="com.soyaa.spring.ex.database.dao.UsedGoodsDAO">
+	
+	<!-- select 를 하기 위한 것이니까 select 로 묶어주기 -->
+	<!-- id라는 속성에다가 메소드 이름을 연결 -->
+	<!-- 메소드를 연결할 것이기 때문에 메소드 속성들을 다 연결해주어야 한다 -->
+	<!-- resultType = return type -->
+	<!-- resultType select 라고 해놨다 : 여러개일 가능성이 높아짐 - List는 mybatis가 판단해서 알아서 잡아줌 - 즉 List는 안적어줘도 됨 -->
+	<!-- parameter는 없기 때문에 넘어가고 이렇게 하면 메소드 연결 완성!! -->
+	<select id="selectUsedGoodsList" resultType="com.soyaa.spring.ex.database.model.UsedGoods">
+		<!-- 안에 쿼리를 작성해주면 끝!! -->
+		<!-- *로 하면 안되고 하나씩 다 적어줘야함 -->
+		SELECT 
+			`id`
+			, `sellorId`
+			, `title`
+			, `price`
+			, `description`
+			, `picture`
+			, `createdAt`
+			, `updatedAt`
+		FROM 
+		`used_goods`;
+		<!-- 옆으로 나열하는 게 오류난 것 찾기 쉬움 -->
+		<!-- * 로 하면 쿼리가 수정되었을 때 오류가 날 수 있음(ex : 추가 되었을 때) -->
+	</select>
+	
 </mapper>
 
 <!-- head같은 지정되지 않은 거 못씀 -->

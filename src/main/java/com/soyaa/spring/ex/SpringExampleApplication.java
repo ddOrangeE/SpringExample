@@ -21,7 +21,7 @@ import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 // 데이터 베이스 설정할 거니까 미룬다고 했던 거 지우고
 
 // 내 패키지 이름 + 모든 거에 접근할 거니까 *
-@MapperScan(basePackages="com.soyaa.spring.ex.*")
+//@MapperScan(basePackages="com.soyaa.spring.ex.*")
 public class SpringExampleApplication {
 
 	public static void main(String[] args) {
@@ -30,16 +30,16 @@ public class SpringExampleApplication {
 	
 	// 정해진 메소드
 	// 어떤 드라이버로 어떤 url 어떤 userId, password 로 어떤 패키지(?)를 이용할 건지?
-	@Bean
-	public SqlSessionFactory sqlSessionFactory(DataSource dataSource) throws Exception {
-		SqlSessionFactoryBean sessionFactory = new SqlSessionFactoryBean();
-		sessionFactory.setDataSource(dataSource);
-		
-		// org.springframework.core.io.support.  import 해주기
-		Resource[] res = new PathMatchingResourcePatternResolver().getResources("classpath:mappers/*Mapper.xml");
-		sessionFactory.setMapperLocations(res);
-		
-		return sessionFactory.getObject();
-	}
+//	@Bean
+//	public SqlSessionFactory sqlSessionFactory(DataSource dataSource) throws Exception {
+//		SqlSessionFactoryBean sessionFactory = new SqlSessionFactoryBean();
+//		sessionFactory.setDataSource(dataSource);
+//		
+//		// org.springframework.core.io.support.  import 해주기
+//		Resource[] res = new PathMatchingResourcePatternResolver().getResources("classpath:mappers/*Mapper.xml");
+//		sessionFactory.setMapperLocations(res);
+//		
+//		return sessionFactory.getObject();
+//	}
 
 }

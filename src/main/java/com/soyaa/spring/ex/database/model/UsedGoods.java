@@ -5,7 +5,7 @@ import java.util.Date;
 public class UsedGoods {
 	
 	private int id;
-	private int sellerId;
+	private int sellorId;
 	private String title;
 	private int price;
 	private String description;
@@ -19,11 +19,11 @@ public class UsedGoods {
 	public void setId(int id) {
 		this.id = id;
 	}
-	public int getSellerId() {
-		return sellerId;
+	public int getSellorId() {
+		return sellorId;
 	}
-	public void setSellerId(int sellerId) {
-		this.sellerId = sellerId;
+	public void setSellorId(int sellorId) {
+		this.sellorId = sellorId;
 	}
 	public String getTitle() {
 		return title;
