@@ -5,8 +5,12 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
+<!-- 메소드의 속성을 모두 지정해줘야한다 --> 
 <mapper namespace="com.soyaa.spring.ex.mybatis.dao.ReviewDAO">
-	<select id="selectReview" resultType="com.soyaa.spring.ex.mybatis.model.Review">
+	<!-- 예제 1번 -->
+	
+	<select id="selectReview" resultType="com.soyaa.spring.ex.mybatis.model.Review"
+		parameterType="int">
 		SELECT 
 			`id`
 			, `storeId`
@@ -21,4 +25,62 @@
 		WHERE 
 			`id` = #{id}	
 	</select>
+	
+	<!-- 예제 2번 -->
+	<!-- 모두 타입이 다를 경우에는 parameterType을 map으로 잡아주면 알아서 해줌 -->
+	<!-- insert는 resultType이 int 로 고정되어있어서 따로 잡아주면 오히려 에러남  -->
+	<!-- insert : 삽입된 행의 개수 update : 수정된 행의 개수 delete : 삭제된 행의 개수가 return 된다 -->
+	<insert id="insertReview" parameterType="map">
+		INSERT INTO
+			`new_review`
+		(
+			<!-- id는 AUTO_INCREMENT 지정해놨으니 필요없다 -->
+			`storeId`
+			, `menu`
+			, `userName`
+			, `point`
+			, `review`
+			, `createdAt`
+			, `updatedAt`
+		)
+		VALUES
+		(
+		<!-- Param 어노테이션의 키워드 -->
+			#{storeId}
+			, #{menu}
+			, #{userName}
+			, #{point}
+			, #{review}
+			, now()
+			, now()
+		)
+	</insert>
+	
+	<!-- 객체 형태니까 해당하는 클래스를 정확하게 잡아주기 (parameterType) -->
+	<insert id="insertReviewByObject" parameterType="com.soyaa.spring.ex.mybatis.model.Review">
+		INSERT INTO
+			`new_review`
+		(
+			`storeId`
+			, `menu`
+			, `userName`
+			, `point`
+			, `review`
+			, `createdAt`
+			, `updatedAt`
+		)
+		VALUES
+		(
+		<!-- 얘가 parameterType을 뒤져서 찾아서 다 입력해준다 -->
+		<!-- 전달되는 객체의 멤버변수의 이름을 적어주면 객체의 멤버변수를 얘가 채워주는 것 -->
+		<!-- Review 클래스의 멤버변수 이름 -->
+			#{storeId}
+			, #{menu}
+			, #{userName}
+			, #{point}
+			, #{review}
+			, now()
+			, now()
+		)
+	</insert>
 </mapper>
