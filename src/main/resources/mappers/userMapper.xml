@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- mybatis DTD 잡아주기 -->
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<!-- DAO 연결해주기 : mapper -->
+<mapper namespace="com.soyaa.spring.ex.jsp.dao.UserDAO">
+	<insert id="insertUser" parameterType="map">
+		INSERT INTO 
+			`new_user`
+		(
+			`name`
+			, `yyyymmdd`
+			, `introduce`
+			, `email`
+			, `createdAt`
+			, `updatedAt`
+		)
+		VALUE
+		(
+			#{name}
+			, #{birthDay}
+			, #{introduce}
+			, #{email}
+			, now()
+			, now()
+		)
+		
+	</insert>
+	
+	<select id="selectUserRecent" resultType="com.soyaa.spring.ex.jsp.model.User">
+		SELECT 
+			`id`
+			, `name`
+			, `yyyymmdd`
+			, `introduce`
+			, `email`
+			, `createdAt`
+			, `updatedAt`
+		FROM 
+			`new_user`
+		ORDER BY `createdAt` DESC LIMIT 1;
+	</select>
+
+</mapper>
