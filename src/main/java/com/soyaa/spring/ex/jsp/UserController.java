@@ -53,9 +53,9 @@ public class UserController {
 	
 	// 가장 최근에 등록된 사용자 정보를 하나 얻어 오는 기능(user table 기반)
 	
-	@RequestMapping("/search")  // GET POST 
+	@GetMapping("/search")  // GET POST 
 	@ResponseBody
-	public List<User> userRecent() {  // List 왜씀?
+	public User userRecent() {  // List 왜씀?
 		return userBO.userRecent();
 	}
 	

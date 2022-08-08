@@ -1,6 +1,5 @@
 package com.soyaa.spring.ex.jsp.dao;
 
-import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
@@ -18,5 +17,5 @@ public interface UserDAO {
 	
 	// 가장 최근에 등록된 사용자 정보를 하나 얻어 오는 기능
 	
-	public List<User> selectUserRecent();
+	public User selectUserRecent();
 }
