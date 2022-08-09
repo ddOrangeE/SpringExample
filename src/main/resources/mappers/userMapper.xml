@@ -42,6 +42,8 @@
 		FROM 
 			`new_user`
 		ORDER BY `createdAt` DESC LIMIT 1;
+		
+		<!-- id기준도 가능 -->
 	</select>
 
 </mapper>

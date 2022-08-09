@@ -1,9 +1,8 @@
 package com.soyaa.spring.ex.jsp;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -54,9 +53,26 @@ public class UserController {
 	// 가장 최근에 등록된 사용자 정보를 하나 얻어 오는 기능(user table 기반)
 	
 	@GetMapping("/search")  // GET POST 
-	@ResponseBody
-	public User userRecent() {  // List 왜씀?
-		return userBO.userRecent();
+	// @ResponseBody 
+	
+	// jsp 로 연결하는 건 String으로 return - jsp 주소
+	public String userRecent(Model model) {  // List 왜씀?
+		// 필요한 파라미터는 그때 그때 꺼내 쓴다. 
+		// Model 이라는 객체를 Spring 에서 전달해줌 (있는 걸 전달해주는 것)
+		
+		User lastUser = userBO.userRecent();
+		
+		model.addAttribute("title", "최근 등록 사용자 정보");
+		// key value 형태
+		// 필요할 때마다 addAttribute
+		
+		model.addAttribute("user", lastUser);
+		// 객체 자체를 저장 가능
+		// 값이 중요한 거지 변수는 관계 없음
+		
+		// 모델에 추가된 값은 return 된 경로에서 사용 가능
+		
+		return "jsp/userInfo";
 	}
 	
 	
