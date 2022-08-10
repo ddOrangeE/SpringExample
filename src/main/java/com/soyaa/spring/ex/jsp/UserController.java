@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -75,7 +76,44 @@ public class UserController {
 		return "jsp/userInfo";
 	}
 	
+	// insert 하자마자 insert 된 pk (primary key 를 가져오는 방법)
+	// 이게 왜 필요하냐!!
+	// 컴퓨터는 매우 빠르다 내가 insert 하고 insert한 pk 를 select 하는 동안에 다른 누군가가 insert 를 했을 수도 있다
+	// 그러면 내가 가져오려는 pk와 다를 수 있기 때문에 필요함
 	
-	
+	@PostMapping("/add/view")
+//	@ResponseBody
+	public String addUserView(
+			
+//			@RequestParam("name") String name
+//			, @RequestParam("birthday") String birthDay
+//			, @RequestParam("introduce") String introduce
+//			, @RequestParam("email") String email
+			
+			// RequestParam 도 객체로 전달 받을 수 있다
+			
+			// @ModelAttribute 객체로 받는 방법 : @RequestParam 대신 사용 가능 -> 객체의 멤버변수 이름과 일치하면 전달 받기 때문에 input에 name 속성을 객체의  멤버변수 이름과 일치시켜주어야 한다
+			// @ModelAttribute 를 이용해서 객체를 생성하여 이 객체를 파라미터 형태로 전달까지 해준다!
+
+			@ModelAttribute User user // User class 의 멤버변수와 일치할 때에 저장시켜 주기 때문에 일치 시켜주어야 한다  
+			
+			, Model model) {
+		
+//		User user = new User();
+//		user.setName(name);
+//		user.setYyyymmdd(birthDay);
+//		user.setIntroduce(introduce);
+//		user.setEmail(email);
+		
+		int count = userBO.addUserByObject(user);
+		
+		model.addAttribute("user", user);
+		
+//		insert 하고 다시 돌아와서 user에서 id 까지 바로 가져오는 것
+//		return "삽입 결과 : " + count + "pk : " + user.getId();
+		
+		return "jsp/userInfo";
+		
+	}
 	
 }

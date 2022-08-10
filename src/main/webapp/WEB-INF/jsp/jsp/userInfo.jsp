@@ -1,31 +1,36 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=utf-8"
+    pageEncoding="utf-8"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
-<title>»ç¿ëÀÚ Á¤º¸</title>
+<meta charset="utf-8">
+<title>ì‚¬ìš©ì ì •ë³´</title>
 </head>
 <body>
 	<!-- EL Tag -->
-	<%-- el ÅÂ±× model¿¡ ÀÖ´Â °ªÀ» »ç¿ëÇÏ°Ô ÇØÁØ´Ù. <%= %> ÀÌ°Í°ú ºñ½ÁÇÔ --%>
+	<%-- el íƒœê·¸ modelì— ìˆëŠ” ê°’ì„ ì‚¬ìš©í•˜ê²Œ í•´ì¤€ë‹¤. <%= %> ì´ê²ƒê³¼ ë¹„ìŠ·í•¨ --%>
 	<h1>${ title }</h1>
-	<%-- º¯¼ö·Î È°¿ëµÇ±â ¶§¹®¿¡ °£´ÜÇÑ °è»ê °¡´É --%>
+	<%-- ë³€ìˆ˜ë¡œ í™œìš©ë˜ê¸° ë•Œë¬¸ì— ê°„ë‹¨í•œ ê³„ì‚° ê°€ëŠ¥ --%>
 	<table border="1">
 		<tr>
-			<th>ÀÌ¸§</th>
-			<%-- el ÅÂ±×¸¦ ÅëÇØ¼­ ¾Ë¾Æ¼­ getter ·Î ¸¸µé¾îÁÖ±â ¶§¹®¿¡ private º¯¼ö¶óµµ °¡´É!! --%>
-			<%-- Áï public ¾²µíÀÌ ¸â¹öº¯¼ö ²¨³»¾²¸é °¡´É!! (framework °¡ »ç¿ëÀ» µµ¿ÍÁÜ) --%>
+			<th>id</th>
+			<td>${user.id }</td>
+		</tr>
+		
+		<tr>
+			<th>ì´ë¦„</th>
+			<%-- el íƒœê·¸ë¥¼ í†µí•´ì„œ ì•Œì•„ì„œ getter ë¡œ ë§Œë“¤ì–´ì£¼ê¸° ë•Œë¬¸ì— private ë³€ìˆ˜ë¼ë„ ê°€ëŠ¥!! --%>
+			<%-- ì¦‰ public ì“°ë“¯ì´ ë©¤ë²„ë³€ìˆ˜ êº¼ë‚´ì“°ë©´ ê°€ëŠ¥!! (framework ê°€ ì‚¬ìš©ì„ ë„ì™€ì¤Œ) --%>
 			<td>${ user.name }</td>
 		</tr>
 		
 		<tr>
-			<th>»ı³â¿ùÀÏ</th>
+			<th>ìƒë…„ì›”ì¼</th>
 			<td>${ user.yyyymmdd }</td>
 		</tr>
 		
 		<tr>
-			<th>ÀÚ±â¼Ò°³</th>
+			<th>ìê¸°ì†Œê°œ</th>
 			<td>${ user.introduce }</td>
 		</tr>
 	</table>

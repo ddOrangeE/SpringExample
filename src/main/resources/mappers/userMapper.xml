@@ -29,6 +29,36 @@
 		)
 		
 	</insert>
+
+	<insert id="inserBserByObject" parameterType="com.soyaa.spring.ex.jsp.model.User"
+	useGeneratedKeys="true" keyProperty="id">
+	
+	<!-- useGeneratedKeys : insert 함과 동시에 pk 를 가지고 오겠다 -->
+	<!-- keyProperty : pk 이름이 뭐냐 -->
+	<!-- pk 가져오는 게 아니면 에러남 -->
+	
+	
+		INSERT INTO 
+			`new_user`
+		(
+			`name`
+			, `yyyymmdd`
+			, `introduce`
+			, `email`
+			, `createdAt`
+			, `updatedAt`
+		)
+		VALUE
+		(
+			#{name}
+			, #{yyyymmdd}
+			, #{introduce}
+			, #{email}
+			, now()
+			, now()
+		)
+	
+	</insert>
 	
 	<select id="selectUserRecent" resultType="com.soyaa.spring.ex.jsp.model.User">
 		SELECT 
