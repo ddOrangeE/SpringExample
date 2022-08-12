@@ -46,9 +46,12 @@
 	<br>
 	
 	<%-- jstl 에서 이런 반복문을 잘 쓰지 않음 : 화면 꾸미는 건 화면 띠우는 것에 집중하는 게 좋음 --%>
-	<%-- 언제쓰냐!! - 리스트 전달할 때 리스트 반복 --%>
+	<%-- 언제쓰냐!! - 리스트 전달할 때 리스트 반복, jstl 데이터를 보여줄 때 --%>
 
 	<%-- 향상된 for문 생각하면 편함 --%>
+	<%-- 향상된 for문 처럼 쓰는 게 가장 일반적 --%>
+	
+	<%-- var 은 변수를 저장하는 속성이구나 라고 생각해줘도 좋다!! --%>
 	
 	<%-- var : 새로운 변수, items : model 에서 가져온 list 이름 --%>
 	<%-- varStatus: 지금 반복되는 상태를 저장할 변수 --%>
@@ -71,12 +74,35 @@
 		
 		<!-- 이건 java 문법이니까 지양해야한다 -->
 		
-		<!-- jstl 에서 쉽게 꺼내올 수 있게 해준다 -->
+		<!-- jstl (el tag)에서 쉽게 꺼내올 수 있게 해준다 -->
 		<h3>${status.count } 번째 사용자 정보</h3>
 		<h4>이름 : ${user.name }</h4>
 		<h4>나이 : ${user.age }</h4>
 		<h4>취미 : ${user.hobby }</h4>
 	</c:forEach>
+	
+	<%-- class형태로 저장된 List 반복 --%>
+	<%-- jstl이 map 이면 get함수 쓸거고, class이면 안에 있는 멤버 변수 확인해서 그 안의 getter쓸거기 때문에 거의 사용법은 똑같다 --%>
+	
+	<table border="1">
+		<thead>
+			<tr>
+				<th>제목</th>
+				<th>작가</th>
+				<th>출판사</th>
+			</tr>
+		</thead>
+		<tbody>		
+			<c:forEach var="book" items="${books }">
+				<tr>
+					<td>${book.title }</td>
+					<td>${book.author }</td>
+					<td>${book.publisher }</td>
+				</tr>		
+			</c:forEach>
+		</tbody>
+	
+	</table>
 	
 
 </body>
