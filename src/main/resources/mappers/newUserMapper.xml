@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- mybatis DTD 잡아주기 -->
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <mapper namespace="com.soyaa.spring.ex.ajax.dao.NewUserDAO">
+  	<select id="selectUserList" resultType="com.soyaa.spring.ex.jsp.model.User">
+  		SELECT 
+			`id`
+			, `name`
+			, `yyyymmdd`
+			, `introduce`
+			, `email`
+			, `createdAt`
+			, `updatedAt`
+		FROM 
+			`new_user`
+  	</select>
+  	
+  	<insert id="insertUser" parameterType="map">
+  		INSERT INTO 
+  			`new_user`
+  		(
+  			`name`
+  			, `yyyymmdd`
+  			, `email`
+  			, `createdAt`
+  			, `updatedAt`
+  		)
+  		VALUE
+  		(
+  			#{name}
+  			, #{birthDay}
+  			, #{email}
+  			, now()
+  			, now()
+  		)	
+  	</insert>
+  </mapper>
