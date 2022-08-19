@@ -13,9 +13,9 @@
 <body>
 
 	<%-- 	<form method="get" action="/ajax/user/add" id="userForm"> --%>
-		<label>이름 </label><input type="text" name="name" id="nameInput">
-		<label>생년월일 </label><input type="text" name="birthday" id="birthDayInput">
-		<label>이메일 </label><input type="text" name="email" id="emailInput">
+		<label>이름 </label><input type="text" name="name" id="nameInput"> <br>
+		<label>생년월일 </label><input type="text" name="birthday" id="birthDayInput"> <br>
+		<label>이메일 </label><input type="text" name="email" id="emailInput"> <button type="button" id="checkBtn">중복확인</button> <br>
 		<button type="submit" id="saveBtn">저장</button>
 	
 	<%-- </form> --%> 
@@ -28,6 +28,39 @@
 	<%-- 에러 났을 때 검사!! 소스 input 눌러서 에러내용 확인 --%>
 	<script>
 		$(document).ready(function() {
+			
+			$("#checkBtn").on("click", function(){
+				
+				let email = $("#emailInput").val();
+				
+				if(email == "") {
+					alert("이메일을 입력하세요");
+					return false;
+				}
+				
+				$.ajax({
+					type:"get"
+					, url:"/ajax/user/is_duplicate"
+					, data:{"email":email}
+				
+					, success:function(data) {
+						
+						// {"is_duplicate":true} or {"is_duplicate":false}
+						if(data.is_duplicate) {
+							alert("중복되었습니다.");
+						} else {
+							alert("사용가능합니다.");
+						}
+					}
+					, error:function() {
+						alert("중복 확인 에러");
+					}
+					
+					
+				});
+				
+			});
+			
 			
 			$("#saveBtn").on("click", function(){
 				

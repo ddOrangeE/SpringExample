@@ -73,4 +73,34 @@ public class NewUserController {
 					  // 결국 response 에 담기는 건 json 문자열
 	}
 	
+	// API
+	// email 중복 여부를 알려주는 api
+	@GetMapping("/is_duplicate")
+	@ResponseBody   // responsebody 가 없으면 jsp를 찾는다,, API 와 view의 차이점 생각해보면 됨!!
+	public Map<String, Boolean> isDuplicate(@RequestParam("email") String email) {
+		
+		boolean isDuplicate = newUserBO.isDuplicateEmail(email);
+		
+		// {"is_duplicate":true} or {"is_duplicate":false}
+		
+		// 랩퍼클래스의 형태로 저장 해줘야함 (Map은!!) 그래서 boolean 못쓰고 Boolean
+		Map<String, Boolean> map = new HashMap<>();
+		
+		// 자체가 boolean 이기 때문에 isDuplicate == true 가 아니라 isDuplicate만 하면 저 뜻이 된다
+		if(isDuplicate) {
+			map.put("is_duplicate", true);
+		} else {
+			map.put("is_duplicate", false);
+		}
+		
+		return map;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
 } 

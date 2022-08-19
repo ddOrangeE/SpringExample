@@ -38,4 +38,14 @@
   			, now()
   		)	
   	</insert>
+  	
+  	<!-- 이 쿼리를 수행한 결과는 숫자만 나오니까 return 타입을 int로 잡아주면 된다 -->
+  	<select id="selectCountEmail" parameterType="string" resultType="int">
+  		SELECT 
+  			count(1) 
+  		FROM
+  			`new_user`
+  		WHERE
+  			`email` = #{email}
+  	</select>
   </mapper>
